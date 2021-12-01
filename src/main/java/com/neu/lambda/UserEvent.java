@@ -37,7 +37,8 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
             String split_msg[] = msg.split(":");
             String To_Email = split_msg[0];
             String token = split_msg[1];
-            String verify_url = "http://prod.csye6225dnsbagur.me/v1/user/EmailVerification?email="+To_Email+"&token="+token;
+            String ttl = split_msg[2];
+            String verify_url = "http://prod.csye6225dnsbagur.me/v1/user/EmailVerification?email="+To_Email+"&token="+token+"&ttl="+ttl;
             HTMLBODY+="<h1>Click on below Link to Verify your email address:</h1>";
             HTMLBODY+= new URL(verify_url);
             HTMLBODY+="<br>";
