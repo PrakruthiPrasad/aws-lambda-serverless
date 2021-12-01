@@ -1,0 +1,31 @@
+name: Lambda CICD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Install zip
+        run: sudo apt-get update && sudo apt-get install wget zip unzip -y
+      - name: Maven Package
+        run: mvn clean package
+      - name: Maven Verify
+        run: mvn clean verify -DskipTests      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }} 
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code --function-name sns_lambda_function --zip-file fileb://./target/lambda-0.0.1-SNAPSHOT.jar --region us-east-1
