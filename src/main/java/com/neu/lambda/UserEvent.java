@@ -79,8 +79,11 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
             timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(Calendar.getInstance().getTime());
             context.getLogger().log("Invocation completed: " + timeStamp);
         }catch(Exception e) {
-            System.out.println("Email not sent");
-        }
+                System.out.println("Email not sent");
+                System.out.println( e.getMessage());
+                System.out.println("Stack trace: ");
+                e.printStackTrace();
+            }
         return null;
 
 
