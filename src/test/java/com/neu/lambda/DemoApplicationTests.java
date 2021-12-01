@@ -1,4 +1,4 @@
-package com.neu.main;
+package com.neu.lambda;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
