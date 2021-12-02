@@ -55,7 +55,7 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
             req.setTableName("csye6225_Email");
             req.setConsistentRead(true);
             Map<String, AttributeValue> keysMap = new HashMap();
-            keysMap.put("username",new AttributeValue(To_Email));
+            keysMap.put("user_name",new AttributeValue(To_Email));
             req.setKey(keysMap);
             GetItemResult result = dynamoclient.getItem(req);
             if (result.getItem() != null)
@@ -78,7 +78,7 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
                 System.out.println("Email sent!"+ To_Email);
                 context.getLogger().log(request.getRecords().get(0).getSNS().getMessage());
                 Map<String, AttributeValue> map = new HashMap();
-                map.put("username", new AttributeValue(To_Email));
+                map.put("user_name", new AttributeValue(To_Email));
                 PutItemRequest request11 = new PutItemRequest();
                 request11.setTableName("csye6225_Email");
                 request11.setItem(map);
