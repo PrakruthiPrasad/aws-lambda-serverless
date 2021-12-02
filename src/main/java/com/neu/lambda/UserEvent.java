@@ -38,9 +38,13 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
             String msg = request.getRecords().get(0).getSNS().getMessage();
             System.out.println("Msg recieved: "+msg);
             String split_msg[] = msg.split("::");
+            System.out.println("Msg split done");
             String To_Email = split_msg[0];
+            System.out.println("email: " + To_Email);
             String token = split_msg[1];
+            System.out.println("Token: " +token);
             String ttl = split_msg[2];
+            System.out.println("ttl: " + ttl);
             System.out.println("to email: "+split_msg[0]);
             System.out.println("token "+split_msg[1]);
             String verify_url = "http://prod.csye6225dnsbagur.me/v1/user/EmailVerification?email="+To_Email+"&token="+token+"&ttl="+ttl;
