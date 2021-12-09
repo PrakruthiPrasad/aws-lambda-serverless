@@ -47,7 +47,7 @@ public class UserEvent implements RequestHandler<SNSEvent, Object> {
             System.out.println("ttl: " + ttl);
             System.out.println("to email: "+split_msg[0]);
             System.out.println("token "+split_msg[1]);
-            String verify_url = "http://prod.csye6225dnsbagur.me/v1/user/EmailVerification?email="+To_Email+"&token="+token+"&ttl="+ttl;
+            String verify_url = "https://prod.csye6225dnsbagur.me/v1/user/EmailVerification?email="+To_Email+"&token="+token+"&ttl="+ttl;
             HTMLBODY+="<h1>Click on below Link to Verify your email address:</h1>";
             HTMLBODY+= new URL(verify_url);
             HTMLBODY+="<br>";
